@@ -20,7 +20,10 @@ describe('parseLineToJSON()', () => {
       "response_code": "200",
       "document_size": "1497"
     };
+
+    // stringify objects to be able to compare them
     const expectedJSONString = JSON.stringify(expectedJSON);
-    expect(parseLineToJSON(givenString)).toBe(expectedJSONString);
+    const generatedJSONString = JSON.stringify(parseLineToJSON(givenString));
+    expect(generatedJSONString).toBe(expectedJSONString);
   });
 });

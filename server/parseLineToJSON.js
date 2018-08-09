@@ -30,7 +30,7 @@ const parseLineToJSON = logLine => {
     'document_size': logArray[9]
   };
 
-  return JSON.stringify(JSONObject);
+  return JSONObject;
 
 };
 
