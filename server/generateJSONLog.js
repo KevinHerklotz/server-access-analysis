@@ -14,7 +14,6 @@ const generateJSONLog = (sourceLocation, destination) => {
   lineReader.on('close', function () {
     console.log('END');
   });
-
 }
 
 module.exports = generateJSONLog;

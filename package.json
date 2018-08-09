@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "generate": "node server/init.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -13,8 +13,18 @@
   },
   "author": "Kevin Herklotz",
   "license": "ISC",
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
+  },
   "bugs": {
     "url": "https://github.com/KevinHerklotz/server-access-analysis/issues"
   },
-  "homepage": "https://github.com/KevinHerklotz/server-access-analysis#readme"
+  "homepage": "https://github.com/KevinHerklotz/server-access-analysis#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.4.2"
+  }
 }
