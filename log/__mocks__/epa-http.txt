@@ -1,0 +1,10 @@
+141.243.1.172 [29:23:53:25] "GET /Software.html HTTP/1.0" 200 1497
+query2.lycos.cs.cmu.edu [29:23:53:36] "GET /Consumer.html HTTP/1.0" 200 1325
+tanuki.twics.com [29:23:53:53] "GET /News.html HTTP/1.0" 200 1014
+wpbfl2-45.gate.net [29:23:54:15] "GET / HTTP/1.0" 200 4889
+wpbfl2-45.gate.net [29:23:57:08] "POST /cgi-bin/waisgate/134.67.99.11=earth1.epa.gov=210=/indexes/ACCESS=gopher%40earth1.epa.gov=0.00=:free HTTP/1.0" 200 26217
+wpbfl2-45.gate.net [29:23:57:12] "GET /waisicons/text.xbm HTTP/1.0" 200 527
+ix-knx-tn1-22.ix.netcom.com [29:23:57:28] "GET / HTTP/1.0" 200 4889
+hmu4.cs.auckland.ac.nz [29:23:57:35] "GET /docs/GCDOAR/EnergyStar.html HTTP/1.0" 200 6829
+ix-knx-tn1-22.ix.netcom.com [29:23:57:38] "GET /icons/circle_logo_small.gif HTTP/1.0" 200 2624
+suburbia.apana.org.au [29:23:57:39] "GET /docs/PressReleases/1995/August/Day-22 HTTP/1.0" 302 -
