@@ -5,6 +5,8 @@ var mkdirp = require('mkdirp');
 const parseLineToJSON = require('./parseLineToJSON');
 
 const generateJSONLog = (sourcePath, destinationPath) => {
+  // throw new Error('ASD', 'aaaa');
+
   // remove file name to get destination path
   const destinationFolder = destinationPath.substring(0, destinationPath.lastIndexOf('/'));
   // Create destination folder if it doesn't exist
@@ -19,6 +21,8 @@ const generateJSONLog = (sourcePath, destinationPath) => {
     input: fs.createReadStream(sourcePath, 'UTF-8')
   });
 
+  console.log('Reading log file...')
+
   // Array that will contain all the JSON objects
   const LogJSONArray = [];
 
@@ -30,14 +34,18 @@ const generateJSONLog = (sourcePath, destinationPath) => {
 
   // when finished with reading the file...
   lineReader.on('close', function () {
-    const content = JSON.stringify(LogJSONArray);
+    console.log('Writing log file...')
+
+    const content = `export default ${JSON.stringify(LogJSONArray)}\;`;
     // ... write array into file
+    // (I didn't use NodeJS' writeStream, because it would have to many write accesses to the file which would be slow on a hard drive - collecting the data in an array first will be executed on the RAM and will be much faster. Should only be changed if log files get as big as available RAM)
     fs.writeFile(destinationPath, content, 'utf8', (err) => {
         if (err) {
           return console.log(err);
         }
 
         console.log(`The JSON array was successfully geneated and saved in ${destinationPath}`);
+        return true;
     });
   });
 
