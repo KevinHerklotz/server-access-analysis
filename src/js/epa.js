@@ -1,13 +1,24 @@
 import log from '../dist/log.js';
 
+const niceColors = [
+  'rgba(255, 99, 132, 0.2)',
+  'rgba(54, 162, 235, 0.2)',
+  'rgba(255, 206, 86, 0.2)',
+  'rgba(75, 192, 192, 0.2)',
+  'rgba(153, 102, 255, 0.2)',
+  'rgba(255, 159, 64, 0.2)'
+];
+
 
 const methodDistribution = (log) => {
   const methods = new Map();
 
   log.forEach((dataset) => {
-    const method = dataset.request.method;
+    let method = dataset.request.method;
 
-    method === "cons/circle_logo_small.gif" ? console.log(dataset) : null;
+    if (method === '-') {
+      method = 'Nicht definiert'
+    }
 
     if (methods.has(method)) {
       let currentVal = methods.get(method);
@@ -17,26 +28,17 @@ const methodDistribution = (log) => {
     }
   });
 
-  console.log(methods);
   const methodArray = Array.from(methods.keys())
   const countArray = Array.from(methods.values())
 
   // pie chart
-  const ctx = document.getElementById("methodChart");
-  new Chart(ctx, {
+  new Chart(document.getElementById("methodChart"), {
     type: 'pie',
     data: {
         labels: methodArray,
         datasets: [{
             data: countArray,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ]
+            backgroundColor: niceColors,
         }]
     }
   });
