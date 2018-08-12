@@ -58,7 +58,8 @@ textarea {
 
 .block {
   float: left;
-  width: 50%;
+  width: 45vw;
+  margin: 2vw;
 }
 
 
