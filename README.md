@@ -33,3 +33,19 @@ the first part.
 describe the data (lines, bars, pie charts,...).
 * Your application does not have to be supported by a variety of browsers - just
 state in which browser it runs best.
+
+
+# Solution
+
+## Requirements
+
+The solution is based on NodeJS, so it needs to be installed on the system.
+Once this is done, you can checkout the repository and run **`npm install`** inside this folder.
+
+## JSON array
+
+To generate the ECMAScript 6 module that exports the correct JSON array you need to run **`npm run generate`** inside the project folder.
+
+## Open website
+
+To see the website showing the charts, run **`npm run start`** (this will start an express server) and go to [http://localhost:3000/](http://localhost:3000/).
