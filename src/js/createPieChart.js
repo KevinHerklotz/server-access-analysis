@@ -39,11 +39,11 @@ const createPieChart = (log, valueToAnalyze, ElementID, colors) => {
   new Chart(document.getElementById(ElementID), {
     type: 'pie',
     data: {
-        labels: logValueArray,
-        datasets: [{
-            data: countArray,
-            backgroundColor: colors,
-        }]
+      labels: logValueArray,
+      datasets: [{
+        data: countArray,
+        backgroundColor: colors,
+      }]
     }
   });
 }

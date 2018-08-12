@@ -27,7 +27,70 @@ const methodDistribution = (log) => {
 }
 
 const requestsPerMinute = (log) => {
-  // bar chart
+  // will look like this
+  // {
+  //   22: { // hour 23
+  //     01: 14, // minute: amount of requests
+  //     02: 35 ,
+  //     ...
+  //   },
+  //   23: {...
+  //   }
+  // }
+  const requestsPerMinuteObject = {};
+
+  log.forEach((dataset) => {
+    let hour = dataset.datetime.hour;
+    // remove leading zero for sorting reasons
+    if (hour[0] === '0') {
+      hour = hour[1];
+    }
+    const minute = dataset.datetime.minute;
+
+    if (!(hour in requestsPerMinuteObject)) {
+      requestsPerMinuteObject[hour] = {}
+    }
+
+    let currentCount = 1;
+    if (minute in requestsPerMinuteObject[hour]) {
+      currentCount = requestsPerMinuteObject[hour][minute] + 1;
+    }
+
+    requestsPerMinuteObject[hour][minute] = currentCount;
+  });
+
+  const timeArray = [];
+  const averageRequestsArray = [];
+
+  Object.entries(requestsPerMinuteObject).forEach(([hour, minutesObject]) => {
+    // there are not alway 60 logged minutes per hour
+    let minutesAmount = 0;
+    let requestsWithinHour = 0;
+    Object.entries(minutesObject).forEach(([minute, count]) => {
+      minutesAmount++;
+      requestsWithinHour += count;
+    });
+
+    let averageRequests = requestsWithinHour/minutesAmount;
+    averageRequests = Math.round( averageRequests * 10 ) / 10
+
+    timeArray.push(hour);
+    averageRequestsArray.push(averageRequests);
+  });
+
+  console.log(timeArray);
+  console.log(averageRequestsArray);
+
+  // create actual pie chart
+  new Chart(document.getElementById('requestsPerMinuteChart'), {
+    type: 'bar',
+    data: {
+      labels: timeArray,
+      datasets: [{
+        data: averageRequestsArray
+      }]
+    }
+  });
 }
 
 const responseCodeDistribution = (log) => {
@@ -35,7 +98,7 @@ const responseCodeDistribution = (log) => {
 }
 
 const sizeDistribution = (log) => {
-  // ??? chart
+  // line chart
 }
 
 methodDistribution(log);
