@@ -2,15 +2,15 @@ import log from '../dist/log.js';
 import createPieChart from './createPieChart.js';
 
 var colors = [
-  'rgba(255, 99, 132, 0.2)',
-  'rgba(54, 162, 235, 0.2)',
-  'rgba(255, 206, 86, 0.2)',
-  'rgba(75, 192, 192, 0.2)',
-  'rgba(153, 102, 255, 0.2)',
-  'rgba(255, 159, 64, 0.2)',
-  'rgba(64, 249, 255, 0.2)',
-  'rgba(86, 255, 64, 0.2)',
-  'rgba(179, 64, 255, 0.2)'
+  'rgba(255, 99, 132, 0.5)',
+  'rgba(54, 162, 235, 0.5)',
+  'rgba(255, 206, 86, 0.5)',
+  'rgba(14, 72, 100, 0.5)',
+  'rgba(153, 72, 255, 0.5)',
+  'rgba(255, 159, 64, 0.5)',
+  'rgba(64, 249, 255, 0.5)',
+  'rgba(86, 255, 64, 0.5)',
+  'rgba(255, 0, 255, 0.5)',
 ];
 
 function shuffleArray(array) {
@@ -27,7 +27,7 @@ const methodDistribution = (log) => {
 }
 
 const requestsPerMinute = (log) => {
-  // will look like this
+  // requestsPerMinuteObject will look like this
   // {
   //   22: { // hour 23
   //     01: 14, // minute: amount of requests
@@ -47,6 +47,7 @@ const requestsPerMinute = (log) => {
     }
     const minute = dataset.datetime.minute;
 
+    //
     if (!(hour in requestsPerMinuteObject)) {
       requestsPerMinuteObject[hour] = {}
     }
@@ -74,7 +75,7 @@ const requestsPerMinute = (log) => {
     let averageRequests = requestsWithinHour/minutesAmount;
     averageRequests = Math.round( averageRequests * 10 ) / 10
 
-    timeArray.push(hour);
+    timeArray.push(`${hour} Uhr`);
     averageRequestsArray.push(averageRequests);
   });
 
@@ -87,8 +88,22 @@ const requestsPerMinute = (log) => {
     data: {
       labels: timeArray,
       datasets: [{
-        data: averageRequestsArray
-      }]
+        data: averageRequestsArray,
+        backgroundColor: "rgba(14,72,100,0.5)",
+      }],
+    },
+    options: {
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Requests pro Minute'
+          }
+        }]
+      }
     }
   });
 }
