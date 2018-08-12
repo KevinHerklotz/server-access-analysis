@@ -1,5 +1,23 @@
-jQuery(document).ready(function() {
-  var epaDataRecords = JSON.parse(window.epadata);
+import log from '../dist/log.js';
 
-  // TODO: implementation
-});
+console.log(log)
+
+const requestsPerMinute = (log) => {
+  // bar chart
+
+}
+
+const methodDistribution = (log) => {
+  // pie chart
+
+}
+
+const answerCodeDistribution = (log) => {
+  // pie chart
+
+}
+
+const sizeDistribution = (log) => {
+  // ??? chart
+
+}
