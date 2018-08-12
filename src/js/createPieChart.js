@@ -4,18 +4,10 @@
  * @param {Array}  log            Array of JSON objects with log data
  * @param {Array}  valueToAnalyze Array of strings with keys to look at (for example ['request', 'method'] to analyze data of log.request.method)
  * @param {string} ElementID      HTML ID of the canvas it should be rendered to
+ * @param {Array}  colors         Array of strings with css colors
  */
-const createPieChart = (log, valueToAnalyze, ElementID) => {
+const createPieChart = (log, valueToAnalyze, ElementID, colors) => {
   const logValues = new Map();
-
-  const niceColors = [
-    'rgba(255, 99, 132, 0.2)',
-    'rgba(54, 162, 235, 0.2)',
-    'rgba(255, 206, 86, 0.2)',
-    'rgba(75, 192, 192, 0.2)',
-    'rgba(153, 102, 255, 0.2)',
-    'rgba(255, 159, 64, 0.2)'
-  ];
 
   log.forEach((dataset) => {
 
@@ -46,7 +38,7 @@ const createPieChart = (log, valueToAnalyze, ElementID) => {
         labels: logValueArray,
         datasets: [{
             data: countArray,
-            backgroundColor: niceColors,
+            backgroundColor: colors,
         }]
     }
   });
