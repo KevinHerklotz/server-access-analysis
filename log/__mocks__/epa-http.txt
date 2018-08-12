@@ -8,3 +8,5 @@ ix-knx-tn1-22.ix.netcom.com [29:23:57:28] "GET / HTTP/1.0" 200 4889
 hmu4.cs.auckland.ac.nz [29:23:57:35] "GET /docs/GCDOAR/EnergyStar.html HTTP/1.0" 200 6829
 ix-knx-tn1-22.ix.netcom.com [29:23:57:38] "GET /icons/circle_logo_small.gif HTTP/1.0" 200 2624
 suburbia.apana.org.au [29:23:57:39] "GET /docs/PressReleases/1995/August/Day-22 HTTP/1.0" 302 -
+152.35.128.13 [30:15:17:12] "GET /docs/CSO.html HTTP/1.0" 200 3120
+willard-ibmpc12.cac-labs.psu.edu [30:15:17:13] "cons/book.gif" 400 -

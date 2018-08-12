@@ -12,9 +12,9 @@ const generateJSONLog = (sourcePath, destinationPath) => {
     const destinationFolder = destinationPath.substring(0, destinationPath.lastIndexOf('/'));
     // Create destination folder if it doesn't exist
     mkdirp(destinationFolder, function (err) {
+      // Don't throw error, because if folder already exists mkdirp also returns error
       if (err) {
-        console.error(`Error: Couldn't create folder "${destinationFolder}"`, err);
-        reject(err);
+        console.error(err);
       }
     });
 
