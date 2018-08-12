@@ -32,15 +32,8 @@ const createPieChart = (log, valueToAnalyze, ElementID, colors) => {
     }
   });
 
-  // const logValueArray = Array.from(logValues);
-  // const countArray = Array.from(logValues.values());
-
-  const logValueArray = [];
-  const countArray = [];
-  logValues.forEach((value, key) => {
-    logValueArray.push(`${key}: ${value}`);
-    countArray.push(value);
-  });
+  const logValueArray = Array.from(logValues.keys());
+  const countArray = Array.from(logValues.values());
 
   // create actual pie chart
   new Chart(document.getElementById(ElementID), {
