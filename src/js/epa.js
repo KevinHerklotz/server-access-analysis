@@ -6,24 +6,16 @@ var colors = [
   'rgba(54, 162, 235, 0.5)',
   'rgba(255, 206, 86, 0.5)',
   'rgba(14, 72, 100, 0.5)',
+  'rgba(255, 0, 255, 0.5)',
   'rgba(153, 72, 255, 0.5)',
   'rgba(255, 159, 64, 0.5)',
   'rgba(64, 249, 255, 0.5)',
   'rgba(86, 255, 64, 0.5)',
-  'rgba(255, 0, 255, 0.5)',
 ];
-
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
 
 
 const methodDistribution = (log) => {
-  createPieChart(log, ['request', 'method'], 'methodChart', shuffleArray(colors));
+  createPieChart(log, ['request', 'method'], 'methodChart', colors);
 }
 
 const requestsPerMinute = (log) => {
@@ -47,12 +39,13 @@ const requestsPerMinute = (log) => {
     }
     const minute = dataset.datetime.minute;
 
-    //
+    // if this hour doesn't exist in the object, add it
     if (!(hour in requestsPerMinuteObject)) {
       requestsPerMinuteObject[hour] = {}
     }
 
     let currentCount = 1;
+    // if count for certain minute already exists, increase by 1
     if (minute in requestsPerMinuteObject[hour]) {
       currentCount = requestsPerMinuteObject[hour][minute] + 1;
     }
@@ -79,10 +72,7 @@ const requestsPerMinute = (log) => {
     averageRequestsArray.push(averageRequests);
   });
 
-  console.log(timeArray);
-  console.log(averageRequestsArray);
-
-  // create actual pie chart
+  // create actual bar chart
   new Chart(document.getElementById('requestsPerMinuteChart'), {
     type: 'bar',
     data: {
@@ -109,7 +99,7 @@ const requestsPerMinute = (log) => {
 }
 
 const responseCodeDistribution = (log) => {
-  createPieChart(log, ['response_code'], 'responseCodeChart', shuffleArray(colors));
+  createPieChart(log, ['response_code'], 'responseCodeChart', colors.reverse());
 }
 
 const sizeDistribution = (log, stepsInByte) => {

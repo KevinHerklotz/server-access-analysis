@@ -44,17 +44,15 @@ textarea {
     resize: vertical;
 }
 
-.browserupgrade {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
 
 
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
+h1, h2 {
+  text-align: center;
+}
 
 .block {
   float: left;
