@@ -112,11 +112,61 @@ const responseCodeDistribution = (log) => {
   createPieChart(log, ['response_code'], 'responseCodeChart', shuffleArray(colors));
 }
 
-const sizeDistribution = (log) => {
+const sizeDistribution = (log, stepsInByte) => {
   // line chart
+  const matchingRequests = log.filter((dataset) => {
+    return dataset.response_code === '200' && dataset.document_size < 1000
+  });
+
+  // create array like ['0 - 50', '50 - 100', ..., '950 - 1000']
+  const zoningArray = [];
+  // create array like [0, 0, 0, ..., 0, 0]
+  const zoneCounting = [];
+  for (let i = 0; i < 1000; i += stepsInByte) {
+    zoningArray.push(`${i} - ${i + stepsInByte}`);
+    zoneCounting.push(0);
+  }
+
+  // count amount of requests for each 'zone'
+  matchingRequests.forEach((dataset) => {
+    let position = Math.floor(dataset.document_size / stepsInByte);
+    zoneCounting[position] += 1;
+  });
+
+
+  // create actual line chart
+  new Chart(document.getElementById('documentSizeChart'), {
+    type: 'line',
+    data: {
+      labels: zoningArray,
+      datasets: [{
+        data: zoneCounting,
+        backgroundColor: "rgba(142,72,100,0.5)",
+      }],
+    },
+    options: {
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Anzahl'
+          }
+        }],
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Bytes'
+          }
+        }]
+      }
+    }
+  });
 }
 
 methodDistribution(log);
 requestsPerMinute(log);
 responseCodeDistribution(log);
-sizeDistribution(log);
+sizeDistribution(log, 50);
