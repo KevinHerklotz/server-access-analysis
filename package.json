@@ -7,7 +7,7 @@
     "start": "node express-server.js",
     "generate": "node server/init.js",
     "test": "jest --watch --runInBand",
-    "eslint": "mv src/dist/log.js src/dist/log && eslint src/js && mv src/dist/log src/dist/log.js"
+    "eslint": "mv src/dist/log.js src/dist/log && eslint src/js || mv src/dist/log src/dist/log.js"
   },
   "repository": {
     "type": "git",
