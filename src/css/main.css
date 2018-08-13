@@ -50,14 +50,27 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-h1, h2 {
+h1, h2, p {
   text-align: center;
+}
+
+p {
+  width: 50%;
+  margin: 0 auto;
 }
 
 .block {
   float: left;
   width: 45vw;
   margin: 2vw;
+}
+
+@media screen and (max-width: 1000px) {
+  .block {
+    width: 80vw;
+    float: none;
+    margin: 5vw auto;
+  }
 }
 
 

@@ -42,7 +42,7 @@ const createPieChart = (log, valueToAnalyze, ElementID, colors) => {
       labels: logValueArray,
       datasets: [{
         data: countArray,
-        backgroundColor: colors,
+        backgroundColor: [...colors],
       }]
     }
   });
