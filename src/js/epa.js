@@ -1,7 +1,7 @@
-import log from '../dist/log.js';
+import logArray from '../dist/log.js'; // eslint-disable-line
 import createPieChart from './createPieChart.js';
 
-var colors = [
+const colors = [
   'rgba(255, 99, 132, 0.5)',
   'rgba(54, 162, 235, 0.5)',
   'rgba(255, 206, 86, 0.5)',
@@ -16,7 +16,7 @@ var colors = [
 
 const methodDistribution = (log) => {
   createPieChart(log, ['request', 'method'], 'methodChart', colors);
-}
+};
 
 const requestsPerMinute = (log) => {
   // requestsPerMinuteObject will look like this
@@ -41,7 +41,7 @@ const requestsPerMinute = (log) => {
 
     // if this hour doesn't exist in the object, add it
     if (!(hour in requestsPerMinuteObject)) {
-      requestsPerMinuteObject[hour] = {}
+      requestsPerMinuteObject[hour] = {};
     }
 
     let currentCount = 1;
@@ -60,13 +60,13 @@ const requestsPerMinute = (log) => {
     // there are not alway 60 logged minutes per hour
     let minutesAmount = 0;
     let requestsWithinHour = 0;
-    Object.entries(minutesObject).forEach(([minute, count]) => {
-      minutesAmount++;
+    Object.entries(minutesObject).forEach(([minute, count]) => { // eslint-disable-line no-unused-vars
+      minutesAmount += 1;
       requestsWithinHour += count;
     });
 
-    let averageRequests = requestsWithinHour/minutesAmount;
-    averageRequests = Math.round( averageRequests * 10 ) / 10
+    let averageRequests = requestsWithinHour / minutesAmount;
+    averageRequests = Math.round(averageRequests * 10) / 10;
 
     timeArray.push(`${hour} Uhr`);
     averageRequestsArray.push(averageRequests);
@@ -79,7 +79,7 @@ const requestsPerMinute = (log) => {
       labels: timeArray,
       datasets: [{
         data: averageRequestsArray,
-        backgroundColor: "rgba(14,72,100,0.5)",
+        backgroundColor: 'rgba(14,72,100,0.5)',
       }],
     },
     options: {
@@ -90,22 +90,22 @@ const requestsPerMinute = (log) => {
         yAxes: [{
           scaleLabel: {
             display: true,
-            labelString: 'Requests pro Minute'
-          }
-        }]
-      }
-    }
+            labelString: 'Requests pro Minute',
+          },
+        }],
+      },
+    },
   });
-}
+};
 
 const responseCodeDistribution = (log) => {
   createPieChart(log, ['response_code'], 'responseCodeChart', colors.reverse());
-}
+};
 
 const sizeDistribution = (log, stepsInByte) => {
   // line chart
   const matchingRequests = log.filter((dataset) => {
-    return dataset.response_code === '200' && dataset.document_size < 1000
+    return dataset.response_code === '200' && dataset.document_size < 1000;
   });
 
   // create array like ['0 - 50', '50 - 100', ..., '950 - 1000']
@@ -119,7 +119,7 @@ const sizeDistribution = (log, stepsInByte) => {
 
   // count amount of requests for each 'zone'
   matchingRequests.forEach((dataset) => {
-    let position = Math.floor(dataset.document_size / stepsInByte);
+    const position = Math.floor(dataset.document_size / stepsInByte);
     zoneCounting[position] += 1;
   });
 
@@ -131,7 +131,7 @@ const sizeDistribution = (log, stepsInByte) => {
       labels: zoningArray,
       datasets: [{
         data: zoneCounting,
-        backgroundColor: "rgba(142,72,100,0.5)",
+        backgroundColor: 'rgba(142,72,100,0.5)',
       }],
     },
     options: {
@@ -142,21 +142,21 @@ const sizeDistribution = (log, stepsInByte) => {
         yAxes: [{
           scaleLabel: {
             display: true,
-            labelString: 'Anzahl'
-          }
+            labelString: 'Anzahl',
+          },
         }],
         xAxes: [{
           scaleLabel: {
             display: true,
-            labelString: 'Bytes'
-          }
-        }]
-      }
-    }
+            labelString: 'Bytes',
+          },
+        }],
+      },
+    },
   });
-}
+};
 
-methodDistribution(log);
-requestsPerMinute(log);
-responseCodeDistribution(log);
-sizeDistribution(log, 50);
+methodDistribution(logArray);
+requestsPerMinute(logArray);
+responseCodeDistribution(logArray);
+sizeDistribution(logArray, 50);

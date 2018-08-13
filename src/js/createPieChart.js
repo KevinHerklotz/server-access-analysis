@@ -11,7 +11,6 @@ const createPieChart = (log, valueToAnalyze, ElementID, colors) => {
 
   // for each JSON object
   log.forEach((dataset) => {
-
     let logValue = dataset;
     // get the actual value that should be analyzed and store it into logValue
     valueToAnalyze.forEach((analyzeValue) => {
@@ -19,12 +18,12 @@ const createPieChart = (log, valueToAnalyze, ElementID, colors) => {
     });
 
     if (logValue === '-') {
-      logValue = 'Nicht definiert'
+      logValue = 'Nicht definiert';
     }
 
     if (logValues.has(logValue)) {
       // increment count
-      let currentVal = logValues.get(logValue);
+      const currentVal = logValues.get(logValue);
       logValues.set(logValue, currentVal + 1);
     } else {
       // set new value with count of 1
@@ -43,9 +42,9 @@ const createPieChart = (log, valueToAnalyze, ElementID, colors) => {
       datasets: [{
         data: countArray,
         backgroundColor: [...colors],
-      }]
-    }
+      }],
+    },
   });
-}
+};
 
 export default createPieChart;
