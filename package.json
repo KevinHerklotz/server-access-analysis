@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node express-server.js",
     "generate": "node server/init.js",
-    "test": "jest --watch --runInBand"
+    "test": "jest --watch --runInBand",
+    "eslint": "mv src/dist/log.js src/dist/log && eslint src/js && mv src/dist/log src/dist/log.js"
   },
   "repository": {
     "type": "git",
@@ -27,8 +28,13 @@
   "homepage": "https://github.com/KevinHerklotz/server-access-analysis#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
     "babel-jest": "^23.4.2",
     "babel-preset-env": "^1.7.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "jest": "^23.4.2"
   },
   "dependencies": {
