@@ -56,7 +56,7 @@ Be sure to use a [modern browser that supports ES6 modules](https://caniuse.com/
 
 ## Possible improvements
 
-* If this would not be a production website, I would generate the data for the charts also in a backend script, because loading a logfile in the browser with more than 12 MB file size is not recommended at all.
+* If this would be a production website, I would generate the data for the charts also in a backend script, because loading a logfile in the browser with more than 12 MB file size is not recommended at all.
 * The prior improvement would also fix problems with eslint, which has trouble to read the large *log.js* file - it is also not possible to exclude is through configuration as it is imported by *epa.js*.
 * Tests should be written for all js files, but as this is just an exercise with a limited amount of coding time I only wrote tests for the server side JavaScript.
 * [Stylelint](https://github.com/stylelint/stylelint) could be added to lint CSS as well.
